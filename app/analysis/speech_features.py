@@ -10,7 +10,7 @@ def compute_speech_rate(segments: List[dict]) -> float:
     """Вычисляет скорость речи в словах в секунду.
 
     Args:
-        segments: Список сегментов транскрипции с ключами 'text', 'start'
+        segments: Список сегментов распознавания с ключами 'text', 'start'
                   и 'end'.
 
     Returns:
@@ -28,7 +28,7 @@ def compute_phrase_lengths(segments: List[dict]) -> float:
     """Вычисляет среднюю длину фразы в словах.
 
     Args:
-        segments: Список сегментов транскрипции с ключом 'text'.
+        segments: Список сегментов распознавания с ключом 'text'.
 
     Returns:
         Среднее количество слов во фразе, или 0.0 если сегментов нет.
@@ -44,7 +44,7 @@ def compute_pause(
     """Вычисляет среднюю длительность паузы и количество пауз.
 
     Args:
-        segments: Список сегментов транскрипции с ключами 'start' и 'end'.
+        segments: Список сегментов распознавания с ключами 'start' и 'end'.
         threshold: Минимальная длительность паузы в секундах для подсчета.
                   По умолчанию PAUSE_THRESHOLD_SECONDS.
 
@@ -65,7 +65,7 @@ def compute_onset_latency(segments: List[dict]) -> float:
     """Вычисляет латентность начала речи.
 
     Args:
-        segments: Список сегментов транскрипции с ключом 'start'.
+        segments: Список сегментов распознавания с ключом 'start'.
 
     Returns:
         Время до начала речи в секундах, или 0.0 если сегментов нет.

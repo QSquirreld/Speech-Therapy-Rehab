@@ -6,7 +6,7 @@ from app.analysis.speech_features import (
     compute_phrase_lengths,
     compute_speech_rate,
 )
-from app.transcription.whisper_transcriber import transcribe_audio
+from app.recognition.whisper_recognizer import recognize_audio
 
 
 def analyze_motor_aphasia(audio_path: str) -> Dict[str, Any]:
@@ -26,9 +26,9 @@ def analyze_motor_aphasia(audio_path: str) -> Dict[str, Any]:
         - pause_count: Общее количество обнаруженных пауз
         - speech_onset_latency: Время до начала речи в секундах
         - total_duration: Общая длительность аудио в секундах
-        - segments: Список сегментов транскрипции
+        - segments: Список сегментов распознавания
     """
-    segments = transcribe_audio(audio_path)
+    segments = recognize_audio(audio_path)
     speech_rate = compute_speech_rate(segments)
     avg_phrase_len = compute_phrase_lengths(segments)
     avg_pause, pause_count = compute_pause(segments)

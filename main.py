@@ -2,7 +2,7 @@ import argparse
 import os
 
 from app.pipeline import analyze_motor_aphasia
-from app.transcription.transcript_output import get_transcript_text
+from app.recognition.recognition_output import get_recognition_text
 
 
 def main() -> None:
@@ -34,8 +34,8 @@ def main() -> None:
             print(f'{key}: {value}')
 
     if result.get('segments'):
-        print('\nSpeech Transcription:')
-        print(get_transcript_text(result['segments']))
+        print('\nRecognized Text:')
+        print(get_recognition_text(result['segments']))
 
 
 if __name__ == '__main__':

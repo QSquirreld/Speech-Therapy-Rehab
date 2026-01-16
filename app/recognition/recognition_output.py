@@ -1,8 +1,8 @@
 from typing import Any, Dict, List
 
 
-def get_transcript_text(segments: List[Dict[str, Any]]) -> str:
-    """Форматирует сегменты транскрипции в читаемый текст с временными метками.
+def get_recognition_text(segments: List[Dict[str, Any]]) -> str:
+    """Форматирует сегменты распознавания в читаемый текст с временными метками.
 
     Args:
         segments: Список словарей с ключами 'start', 'end' и 'text'.
@@ -29,4 +29,3 @@ def extract_plain_text(segments: List[Dict[str, Any]]) -> str:
         Строка с объединенным текстом всех сегментов через пробел.
     """
     return ' '.join(seg['text'].strip() for seg in segments)
-
