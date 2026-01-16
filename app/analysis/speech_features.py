@@ -7,14 +7,14 @@ PAUSE_THRESHOLD_SECONDS = 0.2
 
 
 def compute_speech_rate(segments: List[dict]) -> float:
-    """Compute speech rate in words per second.
+    """Вычисляет скорость речи в словах в секунду.
 
     Args:
-        segments: List of transcription segments with 'text', 'start',
-                  and 'end' keys.
+        segments: Список сегментов транскрипции с ключами 'text', 'start'
+                  и 'end'.
 
     Returns:
-        Speech rate as words per second, or 0.0 if no segments.
+        Скорость речи в словах в секунду, или 0.0 если сегментов нет.
     """
     if not segments:
         return 0.0
@@ -25,13 +25,13 @@ def compute_speech_rate(segments: List[dict]) -> float:
 
 
 def compute_phrase_lengths(segments: List[dict]) -> float:
-    """Compute average phrase length in words.
+    """Вычисляет среднюю длину фразы в словах.
 
     Args:
-        segments: List of transcription segments with 'text' key.
+        segments: Список сегментов транскрипции с ключом 'text'.
 
     Returns:
-        Average words per phrase, or 0.0 if no segments.
+        Среднее количество слов во фразе, или 0.0 если сегментов нет.
     """
     lengths = [len(seg['text'].split()) for seg in segments]
     return float(np.mean(lengths)) if lengths else 0.0
@@ -41,16 +41,15 @@ def compute_pause(
     segments: List[dict],
     threshold: float = PAUSE_THRESHOLD_SECONDS
 ) -> Tuple[float, int]:
-    """Compute average pause duration and pause count.
+    """Вычисляет среднюю длительность паузы и количество пауз.
 
     Args:
-        segments: List of transcription segments with 'start' and 'end'
-                  keys.
-        threshold: Minimum pause duration in seconds to be counted.
-                  Defaults to PAUSE_THRESHOLD_SECONDS.
+        segments: Список сегментов транскрипции с ключами 'start' и 'end'.
+        threshold: Минимальная длительность паузы в секундах для подсчета.
+                  По умолчанию PAUSE_THRESHOLD_SECONDS.
 
     Returns:
-        Tuple of (average_pause_duration, pause_count).
+        Кортеж из (average_pause_duration, pause_count).
     """
     pauses = []
     for i in range(1, len(segments)):
@@ -63,12 +62,12 @@ def compute_pause(
 
 
 def compute_onset_latency(segments: List[dict]) -> float:
-    """Compute speech onset latency.
+    """Вычисляет латентность начала речи.
 
     Args:
-        segments: List of transcription segments with 'start' key.
+        segments: Список сегментов транскрипции с ключом 'start'.
 
     Returns:
-        Time to first speech in seconds, or 0.0 if no segments.
+        Время до начала речи в секундах, или 0.0 если сегментов нет.
     """
     return segments[0]['start'] if segments else 0.0

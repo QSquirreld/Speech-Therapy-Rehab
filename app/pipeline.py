@@ -10,23 +10,23 @@ from app.transcription.whisper_transcriber import transcribe_audio
 
 
 def analyze_motor_aphasia(audio_path: str) -> Dict[str, Any]:
-    """Analyze audio file for motor aphasia indicators.
+    """Анализирует аудиофайл на признаки моторной афазии.
 
-    Performs transcription and computes speech metrics including
-    speech rate, phrase lengths, pauses, and onset latency.
+    Выполняет распознавание и вычисляет метрики речи, включая
+    скорость речи, длину фраз, паузы и латентность начала речи.
 
     Args:
-        audio_path: Path to the audio file to analyze.
+        audio_path: Путь к аудиофайлу для анализа.
 
     Returns:
-        Dictionary containing speech metrics:
-        - speech_rate_wps: Words per second
-        - avg_phrase_length: Average words per phrase
-        - avg_pause_duration: Average pause duration in seconds
-        - pause_count: Total number of pauses detected
-        - speech_onset_latency: Time to first speech in seconds
-        - total_duration: Total audio duration in seconds
-        - segments: List of transcription segments
+        Словарь, содержащий метрики речи:
+        - speech_rate_wps: Слов в секунду
+        - avg_phrase_length: Среднее количество слов во фразе
+        - avg_pause_duration: Средняя длительность паузы в секундах
+        - pause_count: Общее количество обнаруженных пауз
+        - speech_onset_latency: Время до начала речи в секундах
+        - total_duration: Общая длительность аудио в секундах
+        - segments: Список сегментов транскрипции
     """
     segments = transcribe_audio(audio_path)
     speech_rate = compute_speech_rate(segments)

@@ -1,15 +1,15 @@
 import argparse
 import os
-from pprint import pprint
 
 from app.pipeline import analyze_motor_aphasia
+from app.transcription.transcript_output import get_transcript_text
 
 
 def main() -> None:
-    """Entry point for CLI speech analysis application.
+    """Точка входа для CLI приложения анализа речи.
 
-    Parses command-line arguments and runs motor aphasia analysis
-    on the provided audio file.
+    Парсит аргументы командной строки и запускает анализ моторной афазии
+    для указанного аудиофайла.
     """
     parser = argparse.ArgumentParser(
         description='Analyze speech for motor aphasia.'
@@ -33,6 +33,11 @@ def main() -> None:
         if key != 'segments':
             print(f'{key}: {value}')
 
+    if result.get('segments'):
+        print('\nSpeech Transcription:')
+        print(get_transcript_text(result['segments']))
+
 
 if __name__ == '__main__':
     main()
+

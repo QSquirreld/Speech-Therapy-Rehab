@@ -7,16 +7,16 @@ def transcribe_audio(
     audio_path: str,
     model_size: str = 'base'
 ) -> List[dict]:
-    """Transcribe audio file using Whisper model.
+    """Распознавание речи с использованием модели Whisper.
 
     Args:
-        audio_path: Path to the audio file to transcribe.
-        model_size: Whisper model size (e.g., 'tiny', 'base', 'small',
-                   'medium', 'large'). Defaults to 'base'.
+        audio_path: Путь к аудиофайлу для транскрипции.
+        model_size: Размер модели Whisper (например, 'tiny', 'base', 'small',
+                   'medium', 'large'). По умолчанию 'base'.
 
     Returns:
-        List of transcription segments, each containing 'text', 'start',
-        and 'end' keys.
+        Список сегментов транскрипции, каждый содержит ключи 'text', 'start'
+        и 'end'.
     """
     model = whisper.load_model(model_size)
     result = model.transcribe(audio_path, verbose=False)
